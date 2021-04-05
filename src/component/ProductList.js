@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import dataPhones from "../Data/data.json";
+import ProductItem from "./ProductItem";
 
 class ProductList extends Component {
   productList = dataPhones;
@@ -12,24 +13,10 @@ class ProductList extends Component {
     return this.productList.map((phone, index) => {
       return (
         <div className="col-4" key={index}>
-          <div className="card text-left text-center">
-            <img
-              style={{ width: "200px", height: "250px", marginLeft: "90px" }}
-              className="card-img-top"
-              src={phone.image}
-              alt={phone.image}
-            />
-            <div className="card-body">
-              <h4 className="card-title">{phone.series}</h4>
-              <p className="card-text">{phone.price}</p>
-              <button
-                onClick={() => this.viewDetails(phone)}
-                className="btn btn-success"
-              >
-                View Details
-              </button>
-            </div>
-          </div>
+          <ProductItem
+            onClickViewDetails={this.viewDetails}
+            dataPhoneItem={phone}
+          />
         </div>
       );
     });
